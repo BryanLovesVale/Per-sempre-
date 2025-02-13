@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per te, amore ❤️</title>
+    <style>
+        body {
+            background-color: pink;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: fade 3s infinite;
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+        }
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes fade {
+            0% { opacity: 0; transform: scale(0.5) rotate(-45deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(-45deg); }
+            100% { opacity: 0; transform: scale(0.5) rotate(-45deg); }
+        }
+        .big-heart {
+            display: none;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: red;
+            transform: rotate(-45deg) scale(0);
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            padding: 60px;
+            line-height: 80px;
+            transition: transform 0.5s ease-out;
+        }
+        .big-heart:before, .big-heart:after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: red;
+            border-radius: 50%;
+        }
+        .big-heart:before {
+            top: -100px;
+            left: 0;
+        }
+        .big-heart:after {
+            left: 100px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="bigHeart" class="big-heart">Hai vinto il mio cuore (anche se era già tuo). Ti amerò per sempre ❤️</div>
+
+    <script>
+        let count = 0;
+        function createHeart() {
+            if (count >= 10) return;
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.top = Math.random() * 90 + "vh";
+            heart.style.left = Math.random() * 90 + "vw";
+            document.body.appendChild(heart);
+            heart.addEventListener("click", () => {
+                heart.style.transform = "scale(0)";
+                heart.style.opacity = "0";
+                setTimeout(() => heart.remove(), 200);
+                count++;
+                if (count >= 10) {
+                    document.querySelectorAll(".heart").forEach(h => {
+                        h.style.transform = "scale(0)";
+                        h.style.opacity = "0";
+                        setTimeout(() => h.remove(), 200);
+                    });
+                    setTimeout(() => {
+                        document.getElementById("bigHeart").style.display = "block";
+                        document.getElementById("bigHeart").style.transform = "rotate(-45deg) scale(1)";
+                    }, 500);
+                }
+            });
+            setTimeout(() => heart.remove(), 3000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
