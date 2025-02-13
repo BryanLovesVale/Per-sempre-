@@ -45,39 +45,31 @@
         }
         .big-heart {
             display: none;
-            position: absolute;
-            width: 200px;
-            height: 200px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 250px;
+            height: 250px;
             background: red;
-            transform: rotate(-45deg) scale(0);
             text-align: center;
             color: white;
-            font-size: 20px;
-            padding: 60px;
-            line-height: 80px;
-            transition: transform 0.5s ease-out;
-        }
-        .big-heart:before, .big-heart:after {
-            content: "";
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: red;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 50px;
+            line-height: 30px;
             border-radius: 50%;
-        }
-        .big-heart:before {
-            top: -100px;
-            left: 0;
-        }
-        .big-heart:after {
-            left: 100px;
-            top: 0;
+            transition: transform 0.5s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div id="container"></div>
-    <div id="bigHeart" class="big-heart">Hai vinto il mio cuore (anche se era già tuo). Ti amerò per sempre ❤️</div>
+    <div id="bigHeart" class="big-heart">Hai vinto il mio cuore (anche se era già tuo).<br>Ti amerò per sempre ❤️</div>
 
     <script>
         let count = 0;
@@ -100,8 +92,8 @@
                         setTimeout(() => h.remove(), 200);
                     });
                     setTimeout(() => {
-                        document.getElementById("bigHeart").style.display = "block";
-                        document.getElementById("bigHeart").style.transform = "rotate(-45deg) scale(1)";
+                        document.getElementById("bigHeart").style.display = "flex";
+                        document.getElementById("bigHeart").style.transform = "translate(-50%, -50%) scale(1)";
                     }, 500);
                 }
             });
